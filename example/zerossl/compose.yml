@@ -1,0 +1,40 @@
+volumes:
+  data:
+  logs:
+  cert:
+  recorded:
+  captured:
+
+services:
+  konomitv:
+    image: ghcr.io/hrko/konomitv-acme:latest
+    restart: unless-stopped
+    environment:
+      TZ: Asia/Tokyo
+      CERT_DOMAIN: "your-domain.example.com"
+      LEGO_EMAIL: "you@example.com"
+      # https://go-acme.github.io/lego/dns/cloudflare/
+      # Zone/Zone/Read と Zone/DNS/Edit の権限を付与した API トークンが必要
+      LEGO_DNS_PROVIDER: "cloudflare"
+      CF_DNS_API_TOKEN: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      # ZeroSSL の ACME サーバーを使う場合は以下のように設定
+      LEGO_SERVER: "https://acme.zerossl.com/v2/DV90"
+      LEGO_EAB: "true" # ZeroSSL では EAB が必須
+      # https://app.zerossl.com/developer で KID と HAMC Key を取得して設定
+      LEGO_EAB_KID: "xxxxxxxxxxxxxx"
+      LEGO_EAB_HMAC: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    volumes:
+      - ./config.yaml:/code/config.yaml:ro
+      - data:/code/server/data/
+      - logs:/code/server/logs/
+      - cert:/cert/
+      # 注: KonomiTV のコンテナは癖があり、/host-rootfs/ にホストのルートファイルシステムが
+      #     マウントされていることを期待しています。個人的にはコンテナがホストのルートファイル
+      #     システムにアクセスするのは好ましくないと考えているので、この compose ファイルでは
+      #     このようなマウントは行っていません。代わりに、必要なディレクトリだけをマウントして
+      #     います。
+      - recorded:/host-rootfs/recorded/
+      - captured:/host-rootfs/captured/
+    ports:
+      - 443:7000 # KonomiTV
+      - 127.0.0.1:9001:9001 # Supervisord Web UI

@@ -1,0 +1,24 @@
+# see https://github.com/tsukumijima/KonomiTV/blob/master/config.example.yaml
+# for more details.
+general:
+  backend: "Mirakurun"
+  edcb_url: "tcp://localhost:4510/" # ignored
+  mirakurun_url: "http://192.168.0.10:40772/"
+  encoder: "FFmpeg"
+  program_update_interval: 5 # minutes
+  debug: false
+  debug_encoder: false
+server:
+  port: 7000
+  custom_https_certificate: "/cert/cert.pem"
+  custom_https_private_key: "/cert/key.pem"
+tv:
+  max_alive_time: 10 # seconds
+  debug_mode_ts_path: null
+video:
+  recorded_folders: ["/recorded"] # relative path from /host-rootfs
+capture:
+  upload_folder: "/captured" # relative path from /host-rootfs
+twitter:
+  consumer_key: null
+  consumer_secret: null
