@@ -6,6 +6,8 @@
 
 [KonomiTV](https://github.com/tsukumijima/KonomiTV) では [Akebi](https://github.com/tsukumijima/Akebi) のおかげで、自分で証明書を発行しなくても https://192-168-0-10.local.konomi.tv:7000/ のような URL で HTTPS アクセスができます。特にこだわりがなければこれで問題ないのですが、個人的に自分のドメイン名で KonomiTV にアクセスしたいと思ったため本イメージを作成しました。
 
+ベースイメージには拙作の [docker-konomitv-lite](https://github.com/hrko/docker-konomitv-lite) を使っています。docker-konomitv-lite はハードウェアエンコード機能を取り除いて、サイズを小さくした KonomiTV のイメージです。
+
 
 ## 環境変数
 ACME クライアントが必要とする値を環境変数として渡すことができます。
