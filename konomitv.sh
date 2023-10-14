@@ -9,5 +9,5 @@ if [ ! -f "/cert/cert.pem" ] || [ ! -f "/cert/key.pem" ]; then
   exit 0
 fi
 
-/code/server/thirdparty/Python/bin/python -m pipenv run aerich upgrade && \
+/code/server/thirdparty/Python/bin/python -m poetry run aerich upgrade && \
 exec /code/server/.venv/bin/python KonomiTV.py

@@ -19,6 +19,3 @@ video:
   recorded_folders: ["/recorded"] # relative path from /host-rootfs
 capture:
   upload_folder: "/captured" # relative path from /host-rootfs
-twitter:
-  consumer_key: null
-  consumer_secret: null
