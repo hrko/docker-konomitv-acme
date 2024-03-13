@@ -46,10 +46,9 @@ renew_cert() {
     renew \
     --renew-hook "/cert-install.sh"
 
-  # if lego exited with non-zero exit code, exit
+  # if lego exited with non-zero exit code, print error
   if [ $? -ne 0 ]; then
     _log "ERROR" "lego exited with non-zero exit code"
-    exit 1
   fi
 }
 
