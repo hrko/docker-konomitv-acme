@@ -15,7 +15,7 @@ RUN git clone https://github.com/ochinchina/supervisord.git \
 
 # ----------------------------------------------------------------------------- #
 
-FROM ghcr.io/hrko/konomitv-lite:v0.11.0-0
+FROM ghcr.io/hrko/konomitv-lite:v0.12.0-0
 
 # Install supervisord
 COPY --from=supervisord-builder /supervisord /usr/local/bin/supervisord
